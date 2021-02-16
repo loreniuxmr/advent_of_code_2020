@@ -13,9 +13,9 @@ defmodule ReportRepair do
   @spec list_to_keyword(list) :: Keyword.t()
   def list_to_keyword(list) do
     Enum.map(list, fn elem ->
-      key = value |> String.to_atom()
+      key = elem |> String.to_atom()
       value = String.to_integer(elem)
-      {key, elem}
+      {key, value}
     end)
   end
 
