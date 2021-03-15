@@ -86,8 +86,6 @@ defmodule ReportRepair do
   def find_number([], _goal) do
     {:error, "Epic fail"}
   end
-
-
 end
 
 path = "input.txt"
