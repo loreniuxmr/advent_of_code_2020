@@ -31,6 +31,29 @@ defmodule ReportRepair do
     end)
   end
 
+    @doc """
+    Receives a keyword list and a goal.
+
+    Takes the first element and look for the other two elements in tail to reach the goal.
+  """
+  @spec find_sum(list, integer) :: {:ok, integer, integer, integer} | {:error, String.t()}
+  def find_sum([head|tail], goal) do
+    {_key, value} = head
+    rest = goal - value
+
+     case find_number(tail, rest) do
+       {:ok, elem1, elem2} -> {:ok, elem1, elem2, value}
+       _ -> find_sum(tail, goal)
+     end
+   end
+
+  @doc """
+    Recursive case of find_sum.
+  """
+   def find_sum(list, _goal) when length(list) == 1 do
+     {:error, "Epic fail"}
+   end
+
   @doc """
     Receives a keyword list and a goal.
 
@@ -56,28 +79,15 @@ defmodule ReportRepair do
     {:error, "Epic fail"}
   end
 
-  @doc """
-    Receives a keyword list and a goal.
-
-    Takes the first element and look for the other two elements in tail to reach the goal.
+    @doc """
+    Recursive case of find_number.
   """
-  @spec find_number(list, integer) :: {:ok, integer, integer, integer} | {:error, String.t()}
-  def find_sum([head|tail], goal) do
-    {_key, value} = head
-    rest = goal - value
+  @spec find_number(list, integer) :: {:error, String.t()}
+  def find_number([], _goal) do
+    {:error, "Epic fail"}
+  end
 
-     case find_number(tail, rest) do
-       {:ok, elem1, elem2} -> {:ok, elem1, elem2, value}
-       _ -> find_sum(tail, goal)
-     end
-   end
 
-  @doc """
-    Recursive case of find_sum.
-  """
-   def find_sum(list, _goal) when length(list) == 1 do
-     {:error, "Epic fail"}
-   end
 end
 
 path = "input.txt"
