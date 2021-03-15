@@ -86,8 +86,6 @@ defmodule ReportRepair do
   def find_number([], _goal) do
     {:error, "Epic fail"}
   end
-
-
 end
 
 path = "input.txt"
@@ -98,7 +96,6 @@ keyword_list =
 
 # Report repair: part 1
 # Find in your input file two entries that sum 2020
-
 IO.puts("Report repair: part 1...")
   case ReportRepair.find_number(keyword_list, 2020) do
     {:ok, elem1, elem2} -> IO.puts("The answer is: #{elem1 * elem2}")
